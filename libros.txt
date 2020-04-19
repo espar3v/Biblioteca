@@ -1,0 +1,5 @@
+Supermarket;La Editorial;Logic;359
+Las consecuencias;Carmen Jones;Bunbury;287
+El Libro De Las Mutaciones;Unplugged;Enrique;116
+HAZLA EN GRANDE;AGUILAR;GARY VAYNERCHUK;309
+The Curious Case of Benjamin Batman;MAD;MAD;101
