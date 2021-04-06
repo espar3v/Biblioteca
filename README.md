@@ -1,2 +1,2 @@
-# Biblioteca
-Programa en Java de una biblioteca para agregar libros, comics, revistas, periodicos y enciclopedias
+# Virtual Library
+Java program of a virtual library where you can add Books, Magazines, Newspapers, Encyclopedias & Comics into .txt files using file management
