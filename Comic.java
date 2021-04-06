@@ -1,60 +1,71 @@
 import java.util.Scanner;
-public class Comic extends Publicacion{
-    private double precio;
-	private boolean pasta;
-    private int capitulos;
-    
-    public Comic(){
-        super();
-    }
-    public Comic(String nombre, String editorial, double precio, boolean pasta, int capitulos){
-        super(nombre, editorial);
-        this.precio = precio;
-        this.pasta = pasta;
-        this.capitulos = capitulos;
-    }
 
-    @Override
-	public void mostrar(){
-        mostrarDatos();
-    }
-	public void mostrarDatos(){
-        System.out.println("\n------------------COMIC-----------------");
-        System.out.println("----------------------------------------");
-        super.mostrarDatos();
-        String tipoPasta;
-        if(pasta == true)
-            tipoPasta = "DURA";
-        else
-            tipoPasta = "SUAVE";
-        System.out.println("PRECIO:    " + precio + 
-                         "\nPASTA:     " + tipoPasta + 
-                         "\nCAPITULOS: " + capitulos);
-    }
+public class Comic extends Publication {
+	private double price;
+	private boolean paste;
+	private int chapters;
+
+	static Scanner sc = new Scanner(System.in);
+
+	public Comic() {
+		super();
+	}
+	public Comic(String name, String editorial, double price, boolean paste, int chapters) {
+		super(name, editorial);
+		this.price = price;
+		this.paste = paste;
+		this.chapters = chapters;
+	}
 
 	@Override
-	public void agregar(){
-        agregarDatos();
-    }
-	public void agregarDatos(){
-		super.agregarDatos();
-		Scanner sc = new Scanner(System.in);
-        System.out.print("PRECIO: ");
-        precio = sc.nextDouble();
-		System.out.print("PASTA: |DURA (D)/SUAVE (S)|: ");
-        char pastaOp = sc.next().charAt(0);
-        pastaOp = Character.toUpperCase(pastaOp);
-        if(pastaOp == 'D')
-            pasta = true;
-        else if(pastaOp == 'S')
-            pasta = false;
-        else
-            System.out.print("--TIPO DE PASTA INDEFINIDO--\n");
-        System.out.print("CAPITULOS: ");
-        capitulos = sc.nextInt();
-    }
+	public void show() {
+		showData();
+	}
+	public void showData() {
+		System.out.println("\n=========================================");
+		System.out.println("================== COMIC ================");
+		System.out.println("=========================================");
 
-    public String construirRegistro(){
-        return super.construirRegistro() + ";" + precio + ";" + pasta + ";" + capitulos;
-    }
+		super.showData();
+
+		String isPaste;
+
+		if (paste == true)
+			isPaste = "HARD";
+		else
+			isPaste = "SOFT";
+
+		System.out.println("PRICE: " + price);
+		System.out.println("PASTE: " + isPaste );
+		System.out.println("CHAPTERS: " + chapters);
+	}
+
+	@Override
+	public void add() {
+		addData();
+	}
+	public void addData() {
+		super.addData();
+
+		System.out.print("PRICE: ");
+		price = sc.nextDouble();
+
+		System.out.print("PASTE | HARD (H) | SOFT (S) |\n-> ");
+		char pasteOp = sc.next().charAt(0);
+		pasteOp = Character.toUpperCase(pasteOp);
+
+		if (pasteOp == 'H')
+			paste = true;
+		else if (pasteOp == 'S')
+			paste = false;
+		else
+			System.out.print("::: UNDEFINED TYPE OF PASTE :::\n");
+
+		System.out.print("CHAPTERS: ");
+		chapters = sc.nextInt();
+	}
+
+	public String buildRegistry() {
+		return super.buildRegistry() + ";" + price + ";" + paste + ";" + chapters;
+	}
 }

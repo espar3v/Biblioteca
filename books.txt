@@ -1,5 +1,6 @@
-Supermarket;La Editorial;Logic;359
+Supermarket;The Editorial;Logic;359
 Las consecuencias;Carmen Jones;Bunbury;287
 El Libro De Las Mutaciones;Unplugged;Enrique;116
-HAZLA EN GRANDE;AGUILAR;GARY VAYNERCHUK;309
+Make It Big;Aguilar;Gary Vaynerchuck;309
 The Curious Case of Benjamin Batman;MAD;MAD;101
+Madagascar Is Life;The Freaks;Maurice;3

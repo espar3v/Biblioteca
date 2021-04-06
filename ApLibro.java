@@ -1,7 +1,9 @@
-public class ApLibro{
-	public static void main(String[]args){
-		PuestoDeRevistas puesto = new PuestoDeRevistas();
-		puesto.mostrar();
-		puesto.nuevaPublicacion();
-		puesto.mostrar();}
+public class ApLibro {
+	public static void main(String[]args) {
+		BookStand stand = new BookStand();
+		
+		stand.show();
+		stand.newPublication();
+		stand.show();
+	}
 }
