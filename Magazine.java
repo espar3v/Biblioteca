@@ -1,27 +1,27 @@
 import java.util.Scanner;
 
-public class Magazine extends Publication {
+class Magazine extends Publication {
 	private int year;
 	private int number;
 	
 	static Scanner sc = new Scanner(System.in);
 	
-	public Magazine() {
+	Magazine() {
 		super();
 	}
-	public Magazine(String name, String editorial, int year, int number) {
+	Magazine(String name, String editorial, int year, int number) {
 		super(name, editorial);
 		this.year = year;
 		this.number = number;
 	}
 
 	@Override
-	public void show() {
+	void show() {
 		showData();
 	}
-	public void showData() {
+	void showData() {
 		System.out.println("\n=========================================");
-		System.out.println("================ MAGAZINE ===============");
+		System.out.println("=            M A G A Z I N E            =");
 		System.out.println("=========================================");
 		
 		super.showData();
@@ -31,10 +31,10 @@ public class Magazine extends Publication {
 	}
 
 	@Override
-	public void add() {
+	void add() {
 		addData();
 	}
-	public void addData() {
+	void addData() {
 		super.addData();
 
 		System.out.print("PUBLICATION YEAR: ");
@@ -44,7 +44,7 @@ public class Magazine extends Publication {
 		number = sc.nextInt();
 	}
 
-	public String buildRegistry() {
+	String buildRegistry() {
 		return super.buildRegistry() + ";" + year + ";" + number;
 	}
 }

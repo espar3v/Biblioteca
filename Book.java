@@ -1,27 +1,27 @@
 import java.util.Scanner;
 
-public class Book extends Publication {
+class Book extends Publication {
 	private String author;
 	private int pages;
 
 	static Scanner sc = new Scanner(System.in);
 	
-	public Book() {
+	Book() {
 		super();
 	}
-	public Book(String name, String editorial, String author, int pages) {
+	Book(String name, String editorial, String author, int pages) {
 		super(name, editorial);
 		this.author = author;
 		this.pages = pages;
 	}
 
 	@Override
-	public void show() {
+	void show() {
 		showData();
 	}
-	public void showData() {
+	void showData() {
 		System.out.println("\n=========================================");
-		System.out.println("================== BOOK =================");
+		System.out.println("=                B O O K                =");
 		System.out.println("=========================================");
 
 		super.showData();
@@ -31,10 +31,10 @@ public class Book extends Publication {
 	}
 
 	@Override
-	public void add() {
+	void add() {
 		addData();
 	}
-	public void addData() {
+	void addData() {
 		super.addData();
 		
 		System.out.print("AUTHOR'S NAME: ");
@@ -44,7 +44,7 @@ public class Book extends Publication {
 		pages = sc.nextInt();
 	}
 
-	public String buildRegistry() {
+	String buildRegistry() {
 		return super.buildRegistry() + ";" + author + ";" + pages;
 	}
 }

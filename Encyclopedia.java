@@ -1,16 +1,16 @@
 import java.util.Scanner;
 
-public class Encyclopedia extends Publication {
+class Encyclopedia extends Publication {
 	private String thematic;
 	private int volume;
 	private int year;
 	
 	static Scanner sc = new Scanner(System.in);
 	
-	public Encyclopedia() {
+	Encyclopedia() {
 		super();
 	}
-	public Encyclopedia(String name, String editorial, String thematic, int volume, int year){
+	Encyclopedia(String name, String editorial, String thematic, int volume, int year){
 		super(name, editorial);
 		this.thematic = thematic;
 		this.volume = volume;
@@ -18,12 +18,12 @@ public class Encyclopedia extends Publication {
 	}
 
 	@Override
-	public void show() {
+	void show() {
 		showData();
 	}
-	public void showData() {
+	void showData() {
 		System.out.println("\n=========================================");
-		System.out.println("============== ENCYCLOPEDIA =============");
+		System.out.println("=        E N C Y C L O P E D I A        =");
 		System.out.println("=========================================");
 
 		super.showData();
@@ -34,10 +34,10 @@ public class Encyclopedia extends Publication {
 	}
 
 	@Override
-	public void add() {
+	void add() {
 		addData();
 	}
-	public void addData() {
+	void addData() {
 		super.addData();
 		
 		System.out.print("THEMATIC: ");
@@ -50,7 +50,7 @@ public class Encyclopedia extends Publication {
 		year = sc.nextInt();
 	}
 	
-	public String buildRegistry() {
+	String buildRegistry() {
 		return super.buildRegistry() + ";" + thematic + ";" + volume + ";" + year;
 	}
 }

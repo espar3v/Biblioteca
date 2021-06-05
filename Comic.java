@@ -1,16 +1,16 @@
 import java.util.Scanner;
 
-public class Comic extends Publication {
+class Comic extends Publication {
 	private double price;
 	private boolean paste;
 	private int chapters;
 
 	static Scanner sc = new Scanner(System.in);
 
-	public Comic() {
+	Comic() {
 		super();
 	}
-	public Comic(String name, String editorial, double price, boolean paste, int chapters) {
+	Comic(String name, String editorial, double price, boolean paste, int chapters) {
 		super(name, editorial);
 		this.price = price;
 		this.paste = paste;
@@ -18,22 +18,19 @@ public class Comic extends Publication {
 	}
 
 	@Override
-	public void show() {
+	void show() {
 		showData();
 	}
-	public void showData() {
+	void showData() {
 		System.out.println("\n=========================================");
-		System.out.println("================== COMIC ================");
+		System.out.println("=               C O M I C               =");
 		System.out.println("=========================================");
 
 		super.showData();
 
 		String isPaste;
 
-		if (paste == true)
-			isPaste = "HARD";
-		else
-			isPaste = "SOFT";
+		isPaste = (paste == true) ? "HARD" : "SOFT";
 
 		System.out.println("PRICE: " + price);
 		System.out.println("PASTE: " + isPaste );
@@ -41,10 +38,10 @@ public class Comic extends Publication {
 	}
 
 	@Override
-	public void add() {
+	void add() {
 		addData();
 	}
-	public void addData() {
+	void addData() {
 		super.addData();
 
 		System.out.print("PRICE: ");
@@ -65,7 +62,7 @@ public class Comic extends Publication {
 		chapters = sc.nextInt();
 	}
 
-	public String buildRegistry() {
+	String buildRegistry() {
 		return super.buildRegistry() + ";" + price + ";" + paste + ";" + chapters;
 	}
 }

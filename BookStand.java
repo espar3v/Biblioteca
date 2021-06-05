@@ -1,14 +1,19 @@
-import java.io.*;
 import java.util.Scanner;
 import java.util.StringTokenizer;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.BufferedReader;
 
-public class BookStand {
+class BookStand {
 	private Publication[] myPublications = new Publication[100];
-	private int index, option;
+	private int index, publishingOption;
 	
 	static Scanner sc = new Scanner(System.in);
 	
-	public BookStand() {
+	BookStand() {
 		index = 0;
 		loadRegistry();
 	}
@@ -16,8 +21,8 @@ public class BookStand {
 	/**
 	 * Adds a new publication of a Book, Magazine, Encyclopedia, Newspaper & Comic 
 	 */
-	public void newPublication() {
-		char otraPub = 0, opcion = 0;
+	void newPublication() {
+		char addOption = 0, addOption2 = 0;
 		do {
 			System.out.println("\n===== ADD PUBLICATION =====");
 			System.out.println("1. Book");
@@ -28,9 +33,9 @@ public class BookStand {
 			System.out.println("0. Exit");
 
 			System.out.print("-> ");
-			option = sc.nextInt();
+			publishingOption = sc.nextInt();
 
-			switch(option) {
+			switch (publishingOption) {
 				case 1:
 					do {
 						System.out.println("============= NEW BOOK =============");
@@ -43,9 +48,10 @@ public class BookStand {
 						saveRegistry();
 
 						System.out.print("Want to add another Book? |Y/N|\n-> ");
-						otraPub = sc.next().charAt(0); otraPub = Character.toUpperCase(otraPub);
+						addOption = sc.next().charAt(0);
+						addOption = Character.toUpperCase(addOption);
 						sc.nextLine();
-					} while(otraPub != 'N');
+					} while(addOption != 'N');
 					break;
 				case 2:
 					do {
@@ -59,10 +65,10 @@ public class BookStand {
 						saveRegistry();
 						
 						System.out.print("Want to add another Magazine? |Y/N|\n-> ");
-						otraPub = sc.next().charAt(0);
-						otraPub = Character.toUpperCase(otraPub);
+						addOption = sc.next().charAt(0);
+						addOption = Character.toUpperCase(addOption);
 						sc.nextLine();
-					} while(otraPub != 'N');
+					} while(addOption != 'N');
 					break;
 				case 3:
 					do {
@@ -76,10 +82,10 @@ public class BookStand {
 						saveRegistry();
 						
 						System.out.print("Want to add another Newspaper? |T/N|\n-> ");
-						otraPub = sc.next().charAt(0);
-						otraPub = Character.toUpperCase(otraPub);
+						addOption = sc.next().charAt(0);
+						addOption = Character.toUpperCase(addOption);
 						sc.nextLine();
-					} while(otraPub != 'N');
+					} while(addOption != 'N');
 					break;
 				case 4:
 					do {
@@ -93,10 +99,10 @@ public class BookStand {
 						saveRegistry();
 
 						System.out.print("Want to add another Encyclopedia? |Y/N|\n-> ");
-						otraPub = sc.next().charAt(0);
-						otraPub = Character.toUpperCase(otraPub);
+						addOption = sc.next().charAt(0);
+						addOption = Character.toUpperCase(addOption);
 						sc.nextLine();
-					} while(otraPub!='N');
+					} while(addOption!='N');
 					break;
 				case 5:
 					do {
@@ -110,25 +116,25 @@ public class BookStand {
 						saveRegistry();
 						
 						System.out.print("Want to add another Comic? |Y/N|\n-> ");
-						otraPub = sc.next().charAt(0);
-						otraPub = Character.toUpperCase(otraPub);
+						addOption = sc.next().charAt(0);
+						addOption = Character.toUpperCase(addOption);
 						sc.nextLine();
-					} while(otraPub != 'N');
+					} while(addOption != 'N');
 					break;
 				case 0:
 					return;
 			}
 			System.out.print("Want to add another Publication |Y/N|\n-> ");
-			opcion = sc.next().charAt(0);
-			opcion = Character.toUpperCase(opcion);
-		} while(opcion != 'N');
+			addOption2 = sc.next().charAt(0);
+			addOption2 = Character.toUpperCase(addOption2);
+		} while(addOption2 != 'N');
 	}
 
 	/**
 	 * Shows all the publications, Books, Magazines, Encyclopedias, Newspapers & Comics
 	 */
-	public void show() {
-		for(int i = 0; i < index; i++) {
+	void show() {
+		for (int i = 0; i < index; i++) {
 			myPublications[i].show();
 		}
 	}
@@ -136,59 +142,59 @@ public class BookStand {
 	/**
 	 * Saves the publications in .txt files
 	 */
-	public void saveRegistry() {
+	void saveRegistry() {
 		String registry = myPublications[index++].buildRegistry();
 
-		File archL = new File("books.txt");
-		File archR = new File("magazines.txt");
-		File archP = new File("newspapers.txt");
-		File archE = new File("encyclopedias.txt");
-		File archC = new File("comics.txt");
+		File bookFile = new File("books.txt");
+		File magazineFile = new File("magazines.txt");
+		File newspaperFile = new File("newspapers.txt");
+		File encyclopediaFile = new File("encyclopedias.txt");
+		File comicFile = new File("comics.txt");
 
 		PrintWriter pw = null;
 
-		if(option == 1) { // Book Option
+		if (publishingOption == 1) { // Book Option
 			try {
-				pw = new PrintWriter(new FileWriter(archL, true));
+				pw = new PrintWriter(new FileWriter(bookFile, true));
 				pw.println(registry);
 				pw.close();
 			}
-			catch(IOException e) {
+			catch (IOException e) {
 				System.out.println(e.toString() + "::: FILE ERROR :::");
 			}
 		}
-		if(option == 2) { //Magazine Option
+		if (publishingOption == 2) { //Magazine Option
 			try {
-				pw = new PrintWriter(new FileWriter(archR, true));
+				pw = new PrintWriter(new FileWriter(magazineFile, true));
 				pw.println(registry);
 				pw.close();}
-			catch(IOException e) {
+			catch (IOException e) {
 				System.out.println(e.toString()+"::: FILE ERROR :::");
 			}
 		}
-		if(option == 3) { // Newspaper Option
+		if (publishingOption == 3) { // Newspaper Option
 			try {
-				pw = new PrintWriter(new FileWriter(archP, true));
+				pw = new PrintWriter(new FileWriter(newspaperFile, true));
 				pw.println(registry);
 				pw.close();
 			}
-			catch(IOException e) {
+			catch (IOException e) {
 				System.out.println(e.toString() + "::: FILE ERROR :::");
 			}
 		}
-		if(option == 4) { // Encyclopedia Option
+		if (publishingOption == 4) { // Encyclopedia Option
 			try {
-				pw = new PrintWriter(new FileWriter(archE, true));
+				pw = new PrintWriter(new FileWriter(encyclopediaFile, true));
 				pw.println(registry);
 				pw.close();
 			}
-			catch(IOException e) {
+			catch (IOException e) {
 				System.out.println(e.toString() + "::: FILE ERROR :::");
 			}
 		}
-		if(option == 5) { // Comic Option
+		if (publishingOption == 5) { // Comic Option
 			try {
-				pw = new PrintWriter(new FileWriter(archC, true));
+				pw = new PrintWriter(new FileWriter(comicFile, true));
 				pw.println(registry);
 				pw.close();
 			}
@@ -201,7 +207,7 @@ public class BookStand {
 	/**
 	 * Loads the publications of Books, Magazines, Encyclopedias, Newspapers & Comics from the .txt files to the program
 	 */
-	public void loadRegistry() {
+	void loadRegistry() {
 		BufferedReader input = null;
 		String registry;
 
@@ -211,60 +217,60 @@ public class BookStand {
 
 			System.out.println("=========== EXISTING RECORDS ============");
 
-			while((registry = input.readLine()) != null) {
+			while ((registry = input.readLine()) != null) {
 				StringTokenizer tokens = new StringTokenizer(registry, ";");
 				myPublications[index++] = new Book(tokens.nextToken(), tokens.nextToken(), tokens.nextToken(), Integer.parseInt(tokens.nextToken()));
 			}
 		}
-		catch(IOException e) {
+		catch (IOException e) {
 			System.out.println(e.toString() + "::: FILE ERROR :::");
 		}
 
 		// Load Magazines
 		try {
 			input = new BufferedReader(new FileReader("magazines.txt"));
-			while((registry = input.readLine()) != null) {
+			while ((registry = input.readLine()) != null) {
 				StringTokenizer tokens = new StringTokenizer(registry, ";");
 				myPublications[index++] = new Magazine(tokens.nextToken(), tokens.nextToken(), Integer.parseInt(tokens.nextToken()), Integer.parseInt(tokens.nextToken()));
 			}
 		}
-		catch(IOException e) {
+		catch (IOException e) {
 			System.out.println(e.toString() + "::: FILE ERROR :::");
 		}
 
 		// Load Newspapers
 		try {
 			input = new BufferedReader(new FileReader("newspapers.txt"));
-			while((registry = input.readLine()) != null) {
+			while ((registry = input.readLine()) != null) {
 				StringTokenizer tokens = new StringTokenizer(registry, ";");
 				myPublications[index++] = new Newspaper(tokens.nextToken(), tokens.nextToken(), tokens.nextToken(), Integer.parseInt(tokens.nextToken()), Integer.parseInt(tokens.nextToken()), Integer.parseInt(tokens.nextToken()));
 			}
 		}
-		catch(IOException e) {
+		catch (IOException e) {
 			System.out.println(e.toString() + "::: FILE ERROR :::");
 		}
 
 		// Load Encyclopedias
 		try {
 			input = new BufferedReader(new FileReader("encyclopedias.txt"));
-			while((registry = input.readLine()) != null) {
+			while ((registry = input.readLine()) != null) {
 				StringTokenizer tokens = new StringTokenizer(registry, ";");
 				myPublications[index++] = new Encyclopedia(tokens.nextToken(), tokens.nextToken(), tokens.nextToken(), Integer.parseInt(tokens.nextToken()), Integer.parseInt(tokens.nextToken()));
 			}
 		}
-		catch(IOException e) {
+		catch (IOException e) {
 			System.out.println(e.toString() + "::: FILE ERROR :::");
 		}
 
 		// Load Comics
 		try {
 			input = new BufferedReader(new FileReader("comics.txt"));
-			while((registry = input.readLine()) != null) {
+			while ((registry = input.readLine()) != null) {
 				StringTokenizer tokens = new StringTokenizer(registry, ";");
 				myPublications[index++] = new Comic(tokens.nextToken(), tokens.nextToken(), Double.parseDouble(tokens.nextToken()), Boolean.parseBoolean(tokens.nextToken()), Integer.parseInt(tokens.nextToken()));
 			}
 		}
-		catch(IOException e) {
+		catch (IOException e) {
 			System.out.println(e.toString() + "::: FILE ERROR :::");
 		}
 	}

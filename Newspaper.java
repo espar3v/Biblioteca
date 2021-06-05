@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Newspaper extends Publication {
+class Newspaper extends Publication {
 	private String director;
 	private int day;
 	private int month;
@@ -8,10 +8,10 @@ public class Newspaper extends Publication {
 	
 	static Scanner sc = new Scanner(System.in);
 	
-	public Newspaper() {
+	Newspaper() {
 		super();
 	}
-	public Newspaper(String name, String editorial, String director, int day, int month, int year) {
+	Newspaper(String name, String editorial, String director, int day, int month, int year) {
 		super(name, editorial);
 		this.director = director;
 		this.day = day;
@@ -20,28 +20,25 @@ public class Newspaper extends Publication {
 	}
 
 	@Override
-	public void show() {
+	void show() {
 		showData();
 	}
-	public void showData() {
+	void showData() {
 		System.out.println("\n=========================================");
-		System.out.println("================ NEWSPAPER ==============");
+		System.out.println("=           N E W S P A P E R           =");
 		System.out.println("=========================================");
-
 
 		super.showData();
 		
 		System.out.println("DIRECTOR: " + director);
-		System.out.println("DAY: " + day);
-		System.out.println("MONTH: " + month);
-		System.out.println("YEAR: " + year);
+		System.out.printf("DATE: %02d/%s/%s\n", day, month, year);
 	}
 
 	@Override
-	public void add() {
+	void add() {
 		addData();
 	}
-	public void addData() {
+	void addData() {
 		super.addData();
 
 		System.out.print("DIRECTOR's NAME: ");
@@ -60,6 +57,6 @@ public class Newspaper extends Publication {
 		year = sc.nextInt();
 	}
 
-	public String buildRegistry() {
+	String buildRegistry() {
 		return super.buildRegistry() + ";" + director + ";" + day + ";" + month + ";" + year;}
 }
